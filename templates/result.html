@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        body {
+            margin: 20px;
+            font-family: Shruti, Arial, sans-serif; /* Specify "Shruti" as the primary font family */
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            font-size: 16px;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            position: relative;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Duplicate Lines:</h1>
+    <ul>
+        {% for line in duplicates %}
+        <li>
+            {{ line }}
+            <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        function copyToClipboard(btn) {
+            var textToCopy = btn.parentNode.textContent.trim();
+            navigator.clipboard.writeText(textToCopy).then(function() {
+                alert("Text copied to clipboard: " + textToCopy);
+            }, function(err) {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
+
